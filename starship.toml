@@ -19,7 +19,7 @@ error_symbol = ""
 [status]
 symbol = " "
 success_symbol = " "
-format = '[\[](white)[$status](161)[\]](white) '
+format = '[\[](white)[$status](197)[\]](white) '
 map_symbol = true
 disabled = false
 
@@ -31,7 +31,7 @@ disabled = false
 
 # Shows the username
 [username]
-format = "[$user](161) "
+format = "[$user](197) "
 disabled = false
 show_always = true
 
