@@ -60,13 +60,3 @@ else
   echo "Invalid choice. Please enter '1' or '2'."
   exit 84
 fi
-
-#Create SSH key
-echo "\n\n"
-read -p "Enter your email address: " email
-ssh-keygen -t rsa -b 4096 -C "$email"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-echo "\n\n"
-cat ~/.ssh/id_rsa.pub
-echo "\n\n"
