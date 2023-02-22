@@ -39,7 +39,7 @@ echo "\n"
 if [ $choice -eq 1 ]; then
   scurl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 elif [ $choice -eq 2 ]; then
-#Install ZSH packages
+  #Install ZSH packages
   echo -e "\033[1;30;43mInstalling ZSH...\033[0m"
   if [ -x /usr/bin/apt ]; then
     apt install -y git zsh zsh-autosuggestions
