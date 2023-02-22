@@ -1,22 +1,30 @@
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Tab selection
+#Tab selection & ZSH history
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
 
-# Fix Interop Error that randomly occurs in vscode terminal when using WSL2
+#Fix Interop Error that randomly occurs in vscode terminal when using WSL2
 fix_wsl2_interop() {
-    for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
-        if [[ -e "/run/WSL/${i}_interop" ]]; then
-            export WSL_INTEROP=/run/WSL/${i}_interop
-        fi
-    done
+  for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
+      if [[ -e "/run/WSL/${i}_interop" ]]; then
+          export WSL_INTEROP=/run/WSL/${i}_interop
+      fi
+  done
 }
 
-# Colormap
+#Get colormap for starship
 function colormap() {
   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+}
+
+#Push on github
+function github_push() {
+  git add -A;
+  git commit -m "$*";
+  git push
 }
 
 LFILE="/etc/*-release"
@@ -57,5 +65,8 @@ esac
 
 export STARSHIP_DISTRO="$ICON"
 
-# Load Starship
+#Load Starship
 eval "$(starship init zsh)"
+#Aliases
+alias ghp=github_push
+alias status='git status'
